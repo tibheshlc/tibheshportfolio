@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Project — Tibhesh Lamichhane</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=DM+Sans:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet" />
+  <style>
+    /* ---- project page entrance ---- */
+    .project-back {
+      opacity: 0;
+      animation: fadeUp 0.5s cubic-bezier(0.16,1,0.3,1) 0.1s forwards;
+    }
+    .project-header {
+      opacity: 0;
+      animation: fadeUp 0.7s cubic-bezier(0.16,1,0.3,1) 0.25s forwards;
+    }
+    .project-description {
+      opacity: 0;
+      animation: fadeUp 0.7s cubic-bezier(0.16,1,0.3,1) 0.4s forwards;
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+<body class="page">
+
+  <!-- NAV -->
+  <nav class="nav">
+    <a href="index.html" class="nav-logo">Tibhesh Lamichhane</a>
+    <ul class="nav-links">
+      <li><a href="index.html">All Projects</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="https://instagram.com/tibhesh" target="_blank" rel="noopener">Instagram ↗</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">All Projects</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+    <a href="https://instagram.com/tibhesh" target="_blank">Instagram ↗</a>
+  </div>
+
+  <!-- PAGE CONTENT — rendered by JS below -->
+  <main class="project-page" id="projectPage">
+    <!-- JS populates this -->
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <span>© 2024 Tibhesh Lamichhane — Kathmandu, Nepal</span>
+    <div class="footer-links">
+      <a href="https://instagram.com/tibhesh" target="_blank" rel="noopener">@tibhesh</a>
+      <a href="mailto:tibheshlc@gmail.com">tibheshlc@gmail.com</a>
+    </div>
+  </footer>
+
+  <!-- LIGHTBOX -->
+  <div id="lb" style="
+    display:none; position:fixed; inset:0; z-index:1000;
+    background:rgba(0,0,0,0.96); align-items:center; justify-content:center; flex-direction:column;
+  ">
+    <!-- Close -->
+    <button id="lbClose" style="
+      position:absolute; top:1.5rem; right:2rem;
+      background:none; border:none; color:rgba(255,255,255,0.5);
+      font-family:'DM Sans',sans-serif; font-size:0.75rem; letter-spacing:0.1em;
+      text-transform:uppercase; cursor:pointer; transition:color 0.2s;
+    " onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.5)'">
+      Close ✕
+    </button>
+    <!-- Counter -->
+    <div id="lbCounter" style="
+      position:absolute; top:1.75rem; left:50%; transform:translateX(-50%);
+      font-family:'DM Sans',sans-serif; font-size:0.7rem; letter-spacing:0.1em;
+      color:rgba(255,255,255,0.35); pointer-events:none;
+    "></div>
+    <!-- Prev -->
+    <button id="lbPrev" style="
+      position:absolute; left:1.5rem; top:50%; transform:translateY(-50%);
+      background:none; border:none; color:rgba(255,255,255,0.4);
+      font-size:2rem; cursor:pointer; padding:1rem; transition:color 0.2s; line-height:1;
+    " onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.4)'">&#8592;</button>
+    <!-- Image -->
+    <div id="lbImgWrap" style="
+      max-width:90vw; max-height:88vh;
+      display:flex; align-items:center; justify-content:center;
+    ">
+      <img id="lbImg" src="" alt="" style="
+        max-width:90vw; max-height:88vh;
+        width:auto; height:auto; object-fit:contain;
+        transition:opacity 0.2s;
+      " />
+    </div>
+    <!-- Next -->
+    <button id="lbNext" style="
+      position:absolute; right:1.5rem; top:50%; transform:translateY(-50%);
+      background:none; border:none; color:rgba(255,255,255,0.4);
+      font-size:2rem; cursor:pointer; padding:1rem; transition:color 0.2s; line-height:1;
+    " onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.4)'">&#8594;</button>
+  </div>
+
+  <script src="script.js"></script>
+  <script>
+    (function renderProject() {
+      const params  = new URLSearchParams(window.location.search);
+      const id      = params.get('id');
+      const projects = window.PROJECTS;
+      const idx     = projects.findIndex(p => p.id === id);
+
+      if (idx === -1) {
+        document.getElementById('projectPage').innerHTML = `
+          <div style="padding:6rem 2.5rem; text-align:center;">
+            <p style="font-family:var(--serif);font-size:1.5rem;font-style:italic;color:var(--muted);">
+              Project not found.
+            </p>
+            <a href="index.html" style="display:inline-block;margin-top:2rem;font-size:0.8rem;letter-spacing:0.06em;border-bottom:1px solid currentColor;">
+              ← Back to all projects
+            </a>
+          </div>`;
+        return;
+      }
+
+      const p       = projects[idx];
+      const nextIdx = (idx + 1) % projects.length;
+      const next    = projects[nextIdx];
+
+      // Update page title
+      document.title = `${p.title} — Tibhesh Lamichhane`;
+
+      /* ---- PHOTOS GRID ---- */
+      let photosHTML = '';
+      if (p.photos && p.photos.length) {
+        const items = p.photos.map((ph, i) => `
+          <div class="photo-item reveal ${ph.wide ? 'wide' : ''}" data-index="${i}">
+            <img src="${ph.src}" alt="${p.title}" class="lightbox-trigger" />
+          </div>`).join('');
+        photosHTML = `<div class="project-photos">${items}</div>`;
+      } else {
+        /* placeholder — 3-col grid, free ratio */
+        photosHTML = `
+          <div class="project-photos">
+            ${[1,2,3,4,5,6,7,8,9].map(n => `
+            <div class="photo-item reveal">
+              <div class="ph" style="--ph-bg:${p.heroBg}; min-height:280px;">
+                <p>${p.title}</p>
+                <small>images/${p.id}-0${n}.jpg</small>
+              </div>
+            </div>`).join('')}
+          </div>`;
+      }
+
+      /* ---- RENDER ---- */
+      document.getElementById('projectPage').innerHTML = `
+        <div class="project-body">
+          <a href="index.html" class="project-back">← All Projects</a>
+
+          <div class="project-header">
+            <div class="project-title-block">
+              <p class="project-eyebrow">${p.category}</p>
+              <h1 class="project-name">${p.title} <em>${p.subtitle}</em></h1>
+            </div>
+
+          </div>
+
+          <p class="project-description">${p.description}</p>
+
+          ${photosHTML}
+
+          <div class="next-project reveal">
+            <span>Next Project</span>
+            <a href="project.html?id=${next.id}">${next.title} — ${next.subtitle} →</a>
+          </div>
+        </div>
+      `;
+
+      /* re-init reveal for newly added elements */
+      const newReveals = document.querySelectorAll('.reveal:not(.is-visible)');
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((e, i) => {
+          if (e.isIntersecting) {
+            setTimeout(() => e.target.classList.add('is-visible'), i * 80);
+            io.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.06, rootMargin: '0px 0px -30px 0px' });
+      newReveals.forEach(el => io.observe(el));
+
+      /* ---- LIGHTBOX ---- */
+      const lb       = document.getElementById('lb');
+      const lbImg    = document.getElementById('lbImg');
+      const lbCounter = document.getElementById('lbCounter');
+      const lbClose  = document.getElementById('lbClose');
+      const lbPrev   = document.getElementById('lbPrev');
+      const lbNext   = document.getElementById('lbNext');
+      let lbIndex = 0;
+      let lbSrcs  = [];
+
+      function lbOpen(srcs, index) {
+        lbSrcs  = srcs;
+        lbIndex = index;
+        lb.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+        lbShow();
+      }
+
+      function lbClose_fn() {
+        lb.style.display = 'none';
+        document.body.style.overflow = '';
+      }
+
+      function lbShow() {
+        lbImg.style.opacity = '0';
+        setTimeout(() => {
+          lbImg.src = lbSrcs[lbIndex];
+          lbImg.style.opacity = '1';
+        }, 120);
+        lbCounter.textContent = (lbIndex + 1) + ' / ' + lbSrcs.length;
+        lbPrev.style.display = lbSrcs.length > 1 ? '' : 'none';
+        lbNext.style.display = lbSrcs.length > 1 ? '' : 'none';
+      }
+
+      function lbGo(dir) {
+        lbIndex = (lbIndex + dir + lbSrcs.length) % lbSrcs.length;
+        lbShow();
+      }
+
+      lbClose.addEventListener('click', lbClose_fn);
+      lbPrev.addEventListener('click', () => lbGo(-1));
+      lbNext.addEventListener('click', () => lbGo(1));
+      lb.addEventListener('click', (e) => { if (e.target === lb || e.target === document.getElementById('lbImgWrap')) lbClose_fn(); });
+
+      document.addEventListener('keydown', (e) => {
+        if (lb.style.display === 'none') return;
+        if (e.key === 'Escape')     lbClose_fn();
+        if (e.key === 'ArrowLeft')  lbGo(-1);
+        if (e.key === 'ArrowRight') lbGo(1);
+      });
+
+      /* Wire up clicks — after DOM renders */
+      setTimeout(() => {
+        const allImgs = document.querySelectorAll('.lightbox-trigger');
+        const srcs = Array.from(allImgs).map(img => img.src);
+        allImgs.forEach((img, i) => {
+          img.addEventListener('click', () => lbOpen(srcs, i));
+        });
+      }, 100);
+
+    })();
+  </script>
+</body>
+</html>
