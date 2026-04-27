@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tibhesh Lamichhane — Photographer / Visual Artist</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=DM+Sans:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet" />
+  <style>
+    /* ---- index-only: page-intro animation ---- */
+    .page-intro {
+      overflow: hidden;
+      height: 0;
+      animation: expandIntro 0.01s 0.1s forwards;
+    }
+    @keyframes expandIntro { to { height: auto; } }
+
+    .intro-text {
+      padding: 3.5rem 2.5rem 2.5rem;
+      max-width: 700px;
+      opacity: 0;
+      transform: translateY(14px);
+      animation: fadeUp 0.7s cubic-bezier(0.16,1,0.3,1) 0.25s forwards;
+    }
+    .intro-text h1 {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 4.5vw, 3.5rem);
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      margin-bottom: 0.75rem;
+    }
+    .intro-text p {
+      font-family: var(--serif);
+      font-size: 1rem;
+      font-style: italic;
+      color: var(--muted);
+    }
+    @keyframes fadeUp {
+      to { opacity: 1; transform: none; }
+    }
+
+    /* stagger grid items on load */
+    .grid-item {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUp 0.6s cubic-bezier(0.16,1,0.3,1) forwards;
+    }
+    .grid-item:nth-child(1) { animation-delay: 0.3s; }
+    .grid-item:nth-child(2) { animation-delay: 0.42s; }
+    .grid-item:nth-child(3) { animation-delay: 0.54s; }
+    .grid-item:nth-child(4) { animation-delay: 0.36s; }
+    .grid-item:nth-child(5) { animation-delay: 0.48s; }
+    .grid-item:nth-child(6) { animation-delay: 0.60s; }
+    .grid-item:nth-child(7) { animation-delay: 0.42s; }
+    .grid-item:nth-child(8) { animation-delay: 0.54s; }
+
+    /* filter transition */
+    .grid-item.hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body class="page">
+
+  <!-- NAV -->
+  <nav class="nav">
+    <a href="index.html" class="nav-logo">Tibhesh Lamichhane</a>
+    <ul class="nav-links">
+      <li><a href="index.html" class="active">All Projects</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="https://instagram.com/tibhesh" target="_blank" rel="noopener">Instagram ↗</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">All Projects</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+    <a href="https://instagram.com/tibhesh" target="_blank">Instagram ↗</a>
+  </div>
+
+  <!-- FILTER BAR -->
+  <div class="filter-bar">
+    <button class="filter-btn active" data-filter="all">All Projects</button>
+    <button class="filter-btn" data-filter="commercial">Commercial</button>
+    <button class="filter-btn" data-filter="editorial">Editorial</button>
+    <button class="filter-btn" data-filter="documentary">Documentary</button>
+  </div>
+
+  <!-- PROJECT GRID — 3 columns -->
+  <!--
+    HOW TO ADD YOUR IMAGES:
+    In each .grid-item below, find the <div class="ph"> block.
+    Delete it and replace with: <img src="images/your-file.jpg" alt="Project name" />
+    Put your image files in an  images/  folder next to these HTML files.
+  -->
+  <main class="project-grid" id="projectGrid">
+
+    <!-- 01: 7Up Bangladesh -->
+    <article class="grid-item" data-filter="commercial">
+      <a href="project.html?id=7up-bangladesh" class="grid-link">
+        <div class="grid-img">
+         <img src="images/7up-thumb.jpg" alt="7Up Bangladesh" />
+<!--              Best pick: Group shot in traditional dress (portfolio pg.4) &ndash;&gt;-->
+<!--          <div class="ph" style="&#45;&#45;ph-bg:#c8e6c8;">-->
+<!--            <p>7Up Bangladesh</p>-->
+<!--            <small>images/7up-thumb.jpg</small>-->
+<!--          </div>-->
+        </div>
+        <div class="grid-meta">
+          <span class="grid-category">Commercial · 2022</span>
+          <h2 class="grid-title">7Up Bangladesh — Ramadan Campaign</h2>
+        </div>
+      </a>
+    </article>
+
+    <!-- 02: Pepsi Nepal -->
+    <article class="grid-item" data-filter="commercial">
+      <a href="project.html?id=pepsi-nepal" class="grid-link">
+        <div class="grid-img">
+          <img src="images/pepsi-thumb.jpg" alt="Pepsi Nepal" />
+              Best pick: Man drinking Pepsi on green bg (portfolio pg.5) -->
+<!--          <div class="ph" style="&#45;&#45;ph-bg:#c8cce8;">-->
+<!--            <p>Pepsi Nepal</p>-->
+<!--            <small>images/pepsi-thumb.jpg</small>-->
+<!--          </div>-->
+        </div>
+        <div class="grid-meta">
+          <span class="grid-category">Commercial · 2021</span>
+          <h2 class="grid-title">Pepsi Nepal — More Fizz Campaign</h2>
+        </div>
+      </a>
+    </article>
+
+    <!-- 03: Never Enough -->
+    <article class="grid-item" data-filter="editorial">
+      <a href="project.html?id=never-enough" class="grid-link">
+        <div class="grid-img">
+            <img src="images/never-enough-04.jpg" alt="Never Enough" />
+<!--          &lt;!&ndash;✦ REPLACE: <img src="images/never-enough-thumb.jpg" alt="Never Enough" />-->
+<!--              Best pick: Model on pile of colourful clothes (portfolio pg.8) &ndash;&gt;-->
+<!--          <div class="ph" style="&#45;&#45;ph-bg:#b8dde0;">-->
+<!--            <p>Never Enough</p>-->
+<!--            <small>images/never-enough-thumb.jpg</small>-->
+<!--          </div>-->
+        </div>
+        <div class="grid-meta">
+          <span class="grid-category">Editorial · 2023</span>
+          <h2 class="grid-title">Never Enough — Fashion Editorial</h2>
+        </div>
+      </a>
+    </article>
+
+    <!-- 04: Sunsilk -->
+    <article class="grid-item" data-filter="commercial">
+      <a href="project.html?id=sunsilk" class="grid-link">
+        <div class="grid-img">
+         <img src="images/sunsilk-thumb.png" alt="Sunsilk" />
+<!--              Best pick: Samisha Bhattarai portrait (portfolio pg.7) &ndash;&gt;-->
+<!--          <div class="ph" style="&#45;&#45;ph-bg:#e8c8dc;">-->
+<!--            <p>Sunsilk</p>-->
+<!--            <small>images/sunsilk-thumb.jpg</small>-->
+<!--          </div>-->
+        </div>
+        <div class="grid-meta">
+          <span class="grid-category">Commercial · 2021</span>
+          <h2 class="grid-title">Sunsilk — Gang of Girls</h2>
+        </div>
+      </a>
+    </article>
+
+    <!-- 05: Surakshya -->
+    <article class="grid-item" data-filter="editorial">
+      <a href="project.html?id=surakshya" class="grid-link">
+        <div class="grid-img">
+         <img src="images/surakshya-thumb.jpg" alt="Surakshya" />
+<!--              Best pick: Bridal portrait on gold background (portfolio pg.9) &ndash;&gt;-->
+<!--          <div class="ph" style="&#45;&#45;ph-bg:#e8dcb8;">-->
+<!--            <p>Portraiture</p>-->
+<!--            <small>images/portraiture-thumb.jpg</small>-->
+<!--          </div>-->
+        </div>
+        <div class="grid-meta">
+          <span class="grid-category">Editorial · 2023</span>
+          <h2 class="grid-title">Surakshya Panta</h2>
+        </div>
+      </a>
+    </article>
+
+    <!-- 07: Swastima Khadka -->
+    <article class="grid-item" data-filter="editorial">
+      <a href="project.html?id=swastima-khadka" class="grid-link">
+        <div class="grid-img">
+          <img src="images/swas-5.jpg" alt="Swastima Khadka" />
+<!--          <div class="ph" style="&#45;&#45;ph-bg:#d8e0d0;">-->
+<!--            <p>Swastima Khadka</p>-->
+<!--            <small>images/swastima-thumb.jpg</small>-->
+<!--          </div>-->
+        </div>
+        <div class="grid-meta">
+          <span class="grid-category">Editorial · 2021–2023</span>
+          <h2 class="grid-title">Swastima Khadka</h2>
+        </div>
+      </a>
+    </article>
+
+    <!-- 06: Alice Group -->
+    <article class="grid-item" data-filter="commercial">
+      <a href="project.html?id=alice-group" class="grid-link">
+        <div class="grid-img">
+             <img src="images/alice-group-02.jpg" alt="Alice Restaurant Group" />
+<!--          &lt;!&ndash;✦ REPLACE: <img src="images/alice-thumb.jpg" alt="Alice Restaurant Group" /> &ndash;&gt;-->
+<!--          <div class="ph" style="&#45;&#45;ph-bg:#e0d0c4;">-->
+<!--            <p>Alice Restaurant Group</p>-->
+<!--            <small>images/alice-thumb.jpg</small>-->
+<!--          </div>-->
+        </div>
+        <div class="grid-meta">
+          <span class="grid-category">Commercial · 2024</span>
+          <h2 class="grid-title">Alice Restaurant Group — Brand Campaign</h2>
+        </div>
+      </a>
+    </article>
+
+    <!-- 08: Nepal -->
+    <article class="grid-item" data-filter="documentary">
+      <a href="project.html?id=nepal" class="grid-link">
+        <div class="grid-img">
+            <img src="images/nepal-1.jpg" alt="Where I live." />
+<!--          <div class="ph" style="&#45;&#45;ph-bg:#dcd0e0;">-->
+<!--            <p>E2A Learning Nepal</p>-->
+<!--            <small>images/e2a-thumb.jpg</small>-->
+<!--          </div>-->
+        </div>
+        <div class="grid-meta">
+          <span class="grid-category">Documentary · 2020s</span>
+          <h2 class="grid-title">Where I live.</h2>
+        </div>
+      </a>
+    </article>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <span>© 2024 Tibhesh Lamichhane — Kathmandu, Nepal</span>
+    <div class="footer-links">
+      <a href="https://instagram.com/tibhesh" target="_blank" rel="noopener">@tibhesh</a>
+      <a href="mailto:tibheshlc@gmail.com">tibheshlc@gmail.com</a>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    /* ---- FILTER ---- */
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const gridItems  = document.querySelectorAll('.grid-item');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const f = btn.dataset.filter;
+
+        gridItems.forEach(item => {
+          if (f === 'all' || item.dataset.filter === f) {
+            item.classList.remove('hidden');
+          } else {
+            item.classList.add('hidden');
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About — Tibhesh Lamichhane</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=DM+Sans:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet" />
+  <style>
+    /* ---- entrance animations ---- */
+    .ab-eyebrow { opacity:0; animation: fadeUp 0.5s cubic-bezier(0.16,1,0.3,1) 0.1s forwards; }
+    .ab-name    { opacity:0; animation: fadeUp 0.6s cubic-bezier(0.16,1,0.3,1) 0.2s forwards; }
+    .ab-role    { opacity:0; animation: fadeUp 0.6s cubic-bezier(0.16,1,0.3,1) 0.28s forwards; }
+    .ab-photo   { opacity:0; animation: fadeUp 0.8s cubic-bezier(0.16,1,0.3,1) 0.35s forwards; }
+    .ab-bio     { opacity:0; animation: fadeUp 0.6s cubic-bezier(0.16,1,0.3,1) 0.45s forwards; }
+    .ab-bio + .ab-bio { animation-delay: 0.52s; }
+    .ab-label   { opacity:0; animation: fadeUp 0.5s cubic-bezier(0.16,1,0.3,1) 0.58s forwards; }
+    .ab-clients { opacity:0; animation: fadeUp 0.5s cubic-bezier(0.16,1,0.3,1) 0.64s forwards; }
+    .ab-skills  { opacity:0; animation: fadeUp 0.5s cubic-bezier(0.16,1,0.3,1) 0.70s forwards; }
+
+    @keyframes fadeUp {
+      from { opacity:0; transform: translateY(14px); }
+      to   { opacity:1; transform: none; }
+    }
+
+    /* ---- page layout ---- */
+    .about-page-wrap {
+      width: 100%;
+      padding: 0 0 5rem;
+    }
+
+    /* ---- top info bar (same as project) ---- */
+    .ab-bar {
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 1.25rem 5rem;
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    .ab-eyebrow {
+      font-size: 0.6rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #bbb;
+      margin-bottom: 0.3rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+    .ab-eyebrow::before {
+      content: "";
+      display: inline-block;
+      width: 14px;
+      height: 1px;
+      background: #ccc;
+    }
+    .ab-name {
+      font-family: var(--serif);
+      font-size: clamp(0.9rem, 1.3vw, 1.15rem);
+      font-weight: 400;
+      color: #c0392b;
+      letter-spacing: 0.01em;
+      line-height: 1.2;
+    }
+    .ab-role {
+      font-family: var(--serif);
+      font-size: 0.75rem;
+      font-style: italic;
+      color: #aaa;
+      margin-top: 0.2rem;
+    }
+
+    /* ---- photo + text side by side ---- */
+    .ab-content {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 0;
+      padding: 0 5rem 4rem;
+      align-items: start;
+    }
+    .ab-photo {
+      width: 220px;
+      aspect-ratio: 4 / 5;
+      overflow: hidden;
+      background: #ebebeb;
+    }
+    .ab-photo img,
+    .ab-photo .ph {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .ab-text {
+      padding: 0 0 0 3rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .ab-bio {
+      font-family: var(--sans);
+      font-size: 0.72rem;
+      font-weight: 300;
+      line-height: 1.8;
+      color: #aaa;
+      letter-spacing: 0.02em;
+      margin-bottom: 0.9rem;
+    }
+
+    @media (max-width: 768px) {
+      .ab-bar { padding-left: 1.5rem; padding-right: 1.5rem; }
+      .ab-content { grid-template-columns: 1fr; padding: 0 1.5rem 3rem; }
+      .ab-text { padding: 2rem 0 0; }
+    }
+  </style>
+</head>
+<body class="page">
+
+  <!-- NAV -->
+  <nav class="nav">
+    <a href="index.html" class="nav-logo">Tibhesh Lamichhane</a>
+    <ul class="nav-links">
+      <li><a href="index.html">All Projects</a></li>
+      <li><a href="about.html" class="active">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="https://instagram.com/tibhesh" target="_blank" rel="noopener">Instagram ↗</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">All Projects</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+    <a href="https://instagram.com/tibhesh" target="_blank">Instagram ↗</a>
+  </div>
+
+  <div class="about-page-wrap">
+
+    <!-- INFO BAR -->
+    <div class="ab-bar">
+      <p class="ab-eyebrow">About</p>
+      <h1 class="ab-name">Tibhesh Lamichhane</h1>
+      <p class="ab-role">Photographer &amp; Visual Artist — Kathmandu, Nepal</p>
+    </div>
+
+    <!-- PHOTO + BIO SIDE BY SIDE -->
+    <div class="ab-content">
+      <div class="ab-photo">
+        <!--
+          REPLACE WITH: <img src="images/tibhesh-self.jpg" alt="Tibhesh Lamichhane" />
+        -->
+        <div class="ph" style="--ph-bg:#e8e4dc;">
+          <p>Your Portrait</p>
+          <small>images/tibhesh-self.jpg</small>
+        </div>
+      </div>
+      <div class="ab-text">
+        <p class="ab-bio">
+          I am a photographer and visual artist primarily working in commercial and fashion
+          projects, collaborating with Nepal's biggest names. I have shot campaigns for Pepsi Nepal,
+          7Up Bangladesh, Sunsilk, and Alice Restaurant Group — leading creative vision, directing
+          teams of stylists and designers, and overseeing post-production from start to finish.
+        </p>
+        <p class="ab-bio">
+          Beyond commercial work, I travel across Nepal for personal documentary and editorial
+          projects — trying to reveal the unseen narratives of life and humanity through my lens.
+        </p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <span>© 2024 Tibhesh Lamichhane — Kathmandu, Nepal</span>
+    <div class="footer-links">
+      <a href="https://instagram.com/tibhesh" target="_blank" rel="noopener">@tibhesh</a>
+      <a href="mailto:tibheshlc@gmail.com">tibheshlc@gmail.com</a>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

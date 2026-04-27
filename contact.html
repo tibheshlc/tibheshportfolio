@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact — Tibhesh Lamichhane</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=DM+Sans:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet" />
+  <style>
+    /* entrance animations */
+    .contact-heading,
+    .contact-body,
+    .contact-line,
+    .form-heading,
+    .form-field {
+      opacity: 0;
+      transform: translateY(14px);
+      animation: fadeUp 0.6s cubic-bezier(0.16,1,0.3,1) forwards;
+    }
+    .contact-heading { animation-delay: 0.1s; }
+    .contact-body    { animation-delay: 0.2s; }
+    .contact-line:nth-child(1) { animation-delay: 0.3s; }
+    .contact-line:nth-child(2) { animation-delay: 0.38s; }
+    .contact-line:nth-child(3) { animation-delay: 0.46s; }
+    .form-heading    { animation-delay: 0.15s; }
+    .form-field:nth-child(1) { animation-delay: 0.25s; }
+    .form-field:nth-child(2) { animation-delay: 0.33s; }
+    .form-field:nth-child(3) { animation-delay: 0.41s; }
+    .form-field:nth-child(4) { animation-delay: 0.49s; }
+    .form-submit     { opacity: 0; animation: fadeUp 0.6s cubic-bezier(0.16,1,0.3,1) 0.57s forwards; }
+
+    @keyframes fadeUp {
+      to { opacity: 1; transform: none; }
+    }
+
+    /* form success message */
+    .form-success {
+      display: none;
+      padding: 1.5rem;
+      background: #f0f7f0;
+      border: 1px solid #c8e0c8;
+      font-family: var(--serif);
+      font-style: italic;
+      color: #3a6b3a;
+      margin-top: 1rem;
+      font-size: 1rem;
+    }
+    .form-success.show { display: block; }
+  </style>
+</head>
+<body class="page">
+
+  <!-- NAV -->
+  <nav class="nav">
+    <a href="index.html" class="nav-logo">Tibhesh Lamichhane</a>
+    <ul class="nav-links">
+      <li><a href="index.html">All Projects</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html" class="active">Contact</a></li>
+      <li><a href="https://instagram.com/tibhesh" target="_blank" rel="noopener">Instagram ↗</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">All Projects</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+    <a href="https://instagram.com/tibhesh" target="_blank">Instagram ↗</a>
+  </div>
+
+  <!-- CONTACT LAYOUT -->
+  <div class="contact-layout contact-page">
+
+    <!-- LEFT: info -->
+    <div class="contact-left">
+      <h1 class="contact-heading">Get in Touch</h1>
+
+      <p class="contact-body">
+        Based in Nepal. Available for commercial, editorial,
+        and documentary projects across Nepal and beyond.
+      </p>
+      <p class="contact-body">
+        Inquiries, projects, partnerships, and licensing — feel free to reach out directly.
+      </p>
+
+      <div class="contact-line">
+        <span class="contact-label">Email</span>
+        <a href="mailto:tibheshlc@gmail.com" class="contact-value">tibheshlc@gmail.com</a>
+      </div>
+      <div class="contact-line">
+        <span class="contact-label">Phone</span>
+        <a href="tel:+9779824446628" class="contact-value">+977 9824446628</a>
+      </div>
+      <div class="contact-line">
+        <span class="contact-label">Instagram</span>
+        <a href="https://instagram.com/tibhesh" target="_blank" rel="noopener" class="contact-value">@tibhesh</a>
+      </div>
+      <div class="contact-line">
+        <span class="contact-label">Location</span>
+        <span class="contact-value" style="cursor:default;">Kathmandu, Nepal</span>
+      </div>
+    </div>
+
+    <!-- RIGHT: form -->
+    <div class="contact-right">
+      <p class="form-heading">Send a message</p>
+
+      <form id="contactForm" novalidate>
+        <div class="form-field">
+          <label class="form-label" for="name">Your Name</label>
+          <input type="text" id="name" name="name" class="form-input" placeholder="Name" required />
+        </div>
+        <div class="form-field">
+          <label class="form-label" for="email">Email Address</label>
+          <input type="email" id="email" name="email" class="form-input" placeholder="email@example.com" required />
+        </div>
+        <div class="form-field">
+          <label class="form-label" for="project">Project Type</label>
+          <input type="text" id="project" name="project" class="form-input" placeholder="e.g. Commercial shoot, editorial, etc." />
+        </div>
+        <div class="form-field">
+          <label class="form-label" for="message">Message</label>
+          <textarea id="message" name="message" class="form-textarea" placeholder="Tell me about your project…" required></textarea>
+        </div>
+        <button type="submit" class="form-submit">Send Message</button>
+        <div class="form-success" id="formSuccess">
+          Thank you — your message has been sent. I'll get back to you soon.
+        </div>
+      </form>
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <span>© 2024 Tibhesh Lamichhane — Kathmandu, Nepal</span>
+    <div class="footer-links">
+      <a href="https://instagram.com/tibhesh" target="_blank" rel="noopener">@tibhesh</a>
+      <a href="mailto:tibheshlc@gmail.com">tibheshlc@gmail.com</a>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    /*
+      Paste your Formspree endpoint below.
+      Get it from formspree.io/dashboard after creating a form.
+      It looks like: https://formspree.io/f/xyzabc12
+    */
+    const FORMSPREE_URL = 'https://formspree.io/f/xykdpwzy';
+
+    const form    = document.getElementById('contactForm');
+    const btn     = form.querySelector('.form-submit');
+    const success = document.getElementById('formSuccess');
+
+    form.addEventListener('submit', async function(e) {
+      e.preventDefault();
+
+      const name    = document.getElementById('name').value.trim();
+      const email   = document.getElementById('email').value.trim();
+      const message = document.getElementById('message').value.trim();
+
+      if (!name || !email || !message) {
+        alert('Please fill in your name, email and message.');
+        return;
+      }
+
+      btn.textContent = 'Sending...';
+      btn.disabled = true;
+
+      try {
+        const res = await fetch(FORMSPREE_URL, {
+          method: 'POST',
+          headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name: name,
+            email: email,
+            message: message,
+            _subject: 'New message from portfolio'
+          })
+        });
+
+        if (res.ok) {
+          success.classList.add('show');
+          form.reset();
+          btn.textContent = 'Send Message';
+          btn.disabled = false;
+          setTimeout(() => success.classList.remove('show'), 7000);
+        } else {
+          const data = await res.json();
+          throw new Error(data && data.errors ? data.errors[0].message : 'Something went wrong.');
+        }
+      } catch (err) {
+        alert('Could not send: ' + err.message);
+        btn.textContent = 'Send Message';
+        btn.disabled = false;
+      }
+    });
+  </script>
+</body>
+</html>
