@@ -739,3 +739,5 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .motion-mute svg { width: 22px; height: 22px; }
 .motion-mute .sound-on, .motion-mute[aria-pressed="true"] .sound-off { display: none; }
 .motion-mute[aria-pressed="true"] .sound-on { display: block; }
+
+.project-motion + .final-photos { margin-top: 1rem; }

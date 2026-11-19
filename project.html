@@ -111,7 +111,7 @@
     " onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.4)'">&#8594;</button>
   </div>
 
-  <script src="script.js"></script>
+  <script src="script.js?v=20261119-layout2"></script>
   <script>
     (function renderProject() {
       const params  = new URLSearchParams(window.location.search);
@@ -141,12 +141,15 @@
 
       /* ---- PHOTOS GRID ---- */
       let photosHTML = '';
+      let finalPhotosHTML = '';
       if (p.photos && p.photos.length) {
-        const items = p.photos.map((ph, i) => `
+        const photoItems = p.photos.map((ph, i) => `
           <div class="photo-item reveal ${ph.wide ? 'wide' : ''}" data-index="${i}">
             <img src="${ph.src}" alt="${p.title}" class="lightbox-trigger" />
-          </div>`).join('');
-        photosHTML = `<div class="project-photos">${items}</div>`;
+          </div>`);
+        const split = p.motion?.length ? p.photos.length - (p.motionBeforeLastPhotos || 0) : p.photos.length;
+        photosHTML = `<div class="project-photos">${photoItems.slice(0, split).join('')}</div>`;
+        if (split < photoItems.length) finalPhotosHTML = `<div class="project-photos final-photos">${photoItems.slice(split).join('')}</div>`;
       } else {
         /* placeholder — 3-col grid, free ratio */
         photosHTML = `
@@ -163,8 +166,7 @@
 
       /* Motion plays in view with a single accessible sound control. */
       const motionHTML = p.motion?.length ? `
-        <section class="project-motion" aria-labelledby="motion-heading">
-          <h2 id="motion-heading" class="media-heading">Motion</h2>
+        <section class="project-motion" aria-label="Campaign videos">
           <div class="project-videos">
             ${p.motion.map(clip => `
               <figure class="motion-item reveal">
@@ -177,7 +179,6 @@
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4Z"/><path class="sound-off" d="m16 9 6 6m0-6-6 6"/><path class="sound-on" d="M15 8a6 6 0 0 1 0 8m3-11a10 10 0 0 1 0 14"/></svg>
                 </button>
                 </div>
-                <figcaption>${clip.title}</figcaption>
               </figure>`).join('')}
           </div>
         </section>` : '';
@@ -199,6 +200,7 @@
 
           ${photosHTML}
           ${motionHTML}
+          ${finalPhotosHTML}
 
           <div class="next-project reveal">
             <span>Next Project</span>

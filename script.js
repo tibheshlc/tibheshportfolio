@@ -5,11 +5,11 @@
 const PROJECTS = [
   {
     id: '7up-bangladesh',
+    motionBeforeLastPhotos: 3,
     title: '7Up Bangladesh',
     subtitle: 'Ramadan Campaign',
     category: 'Commercial',
     filter: 'commercial',
-    year: '2022',
     client: '7Up Bangladesh',
     role: 'Lead Photographer',
     description: `A vibrant Ramadan campaign for 7Up Bangladesh celebrating culture, music and community.
@@ -38,11 +38,11 @@ const PROJECTS = [
   },
   {
     id: 'pepsi-nepal',
+    motionBeforeLastPhotos: 1,
     title: 'Pepsi Nepal',
     subtitle: 'More Fizz Campaign',
     category: 'Commercial',
     filter: 'commercial',
-    year: '2021',
     client: 'Pepsi Nepal',
     role: 'Lead Photographer',
     description: `Bold, energetic commercial campaign for Pepsi Nepal's More Fizz campaign.
@@ -80,7 +80,6 @@ const PROJECTS = [
       { src: 'media/babari-campaign.webp' },
       { src: 'media/babari-02.webp' },
       { src: 'media/babari-03.webp' },
-      { src: 'media/babari-04.webp' },
       { src: 'media/commercial-babari-1-1600.webp' },
       { src: 'media/commercial-babari-2-1600.webp' },
       { src: 'media/commercial-babari-3-1600.webp' },
@@ -94,7 +93,6 @@ const PROJECTS = [
     subtitle: 'Fashion Editorial',
     category: 'Editorial',
     filter: 'editorial',
-    year: '2025',
     client: 'Personal Project',
     role: 'Photographer & Creative Director',
     description: `A fashion editorial exploring the tension between desire and excess.
@@ -122,7 +120,6 @@ const PROJECTS = [
     subtitle: 'Gang of Girls',
     category: 'Commercial',
     filter: 'commercial',
-    year: '2022',
     client: 'Sunsilk Nepal',
     role: 'Lead Photographer',
     description: `An empowering commercial campaign for Sunsilk Nepal's Gang of Girls series,
@@ -145,7 +142,6 @@ const PROJECTS = [
     subtitle: 'Personal Series',
     category: 'Editorial',
     filter: 'editorial',
-    year: '2023',
     client: 'Personal Project',
     role: 'Photographer',
     description: `An fashion-portrait series — intimate, raw studies of character, beauty and
@@ -172,7 +168,6 @@ const PROJECTS = [
     subtitle: 'Brand Campaign',
     category: 'Commercial',
     filter: 'commercial',
-    year: '2022',
     client: 'Alice Restaurant Group',
     role: 'Lead Photographer',
     description: `A lifestyle and brand campaign for Alice Restaurant Group, capturing the
@@ -207,7 +202,6 @@ const PROJECTS = [
     subtitle: '',
     category: 'Editorial',
     filter: 'editorial',
-    year: '2022–2024',
     client: 'Swastima Khadka Official',
     role: 'Photographer',
     description: `Two years of photography work for Swastima Khadka's
@@ -238,7 +232,6 @@ const PROJECTS = [
     subtitle: '',
     category: 'Documentary',
     filter: 'documentary',
-    year: '2024–Present',
     client: 'Personal',
     role: 'Photographer',
     description: `Documentary photography of own culture carries a particular responsibility — to resist both the nostalgic gaze
