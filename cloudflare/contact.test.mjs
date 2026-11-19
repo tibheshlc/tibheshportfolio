@@ -1,0 +1,14 @@
+import assert from 'node:assert/strict';
+import worker from './contact.mjs';
+const body={name:'Test <visitor>',email:'tibheshlc@gmail.com',project:'Commercial',message:'Test & message'};
+let sent;
+const env={CONTACT_LIMIT:{limit:async()=>({success:true})},EMAIL:{send:async m=>{sent=m;return {messageId:'test-id'};}}};
+const req=(data=body,origin='https://tibhesh.com')=>new Request('https://tibhesh.com/api/contact',{method:'POST',headers:{Origin:origin,'Content-Type':'application/json'},body:JSON.stringify(data)});
+assert.equal((await worker.fetch(req(body,'https://invalid.example'),env)).status,403);
+assert.equal((await worker.fetch(req({...body,email:'bad'}),env)).status,400);
+assert.equal((await worker.fetch(req({...body,message:'x'.repeat(17000)}),env)).status,413);
+assert.equal((await worker.fetch(req({...body,website:'spam'}),env)).status,200);assert.equal(sent,undefined);
+assert.equal((await worker.fetch(req(),{...env,CONTACT_LIMIT:{limit:async()=>({success:false})}})).status,429);
+assert.equal((await worker.fetch(req(),env)).status,200);assert.equal(sent.replyTo,body.email);assert(sent.text.includes('Project type: Commercial'));assert(sent.html.includes('&lt;visitor&gt;'));
+assert.equal((await worker.fetch(req(),{...env,EMAIL:{send:async()=>{throw new Error('unavailable');}}})).status,503);
+console.log('Passed: origin, validation, body limit, honeypot, rate limit, delivery payload, and failure handling.');

@@ -113,25 +113,26 @@
     <div class="contact-right">
       <p class="form-heading">Send a message</p>
 
-      <form id="contactForm" novalidate>
+      <form id="contactForm">
+        <div style="position:absolute;left:-10000px" aria-hidden="true"><label for="website">Leave this blank</label><input id="website" name="website" tabindex="-1" autocomplete="off" /></div>
         <div class="form-field">
           <label class="form-label" for="name">Your Name</label>
-          <input type="text" id="name" name="name" class="form-input" placeholder="Name" required />
+          <input type="text" id="name" name="name" maxlength="100" class="form-input" placeholder="Name" required />
         </div>
         <div class="form-field">
           <label class="form-label" for="email">Email Address</label>
-          <input type="email" id="email" name="email" class="form-input" placeholder="email@example.com" required />
+          <input type="email" id="email" name="email" maxlength="254" class="form-input" placeholder="email@example.com" required />
         </div>
         <div class="form-field">
           <label class="form-label" for="project">Project Type</label>
-          <input type="text" id="project" name="project" class="form-input" placeholder="e.g. Commercial shoot, editorial, etc." />
+          <input type="text" id="project" name="project" maxlength="200" class="form-input" placeholder="e.g. Commercial shoot, editorial, etc." />
         </div>
         <div class="form-field">
           <label class="form-label" for="message">Message</label>
-          <textarea id="message" name="message" class="form-textarea" placeholder="Tell me about your project…" required></textarea>
+          <textarea id="message" name="message" maxlength="8000" class="form-textarea" placeholder="Tell me about your project…" required></textarea>
         </div>
         <button type="submit" class="form-submit">Send Message</button>
-        <div class="form-success" id="formSuccess">
+        <div class="form-success" id="formSuccess" role="status" aria-live="polite">
           Thank you — your message has been sent. I'll get back to you soon.
         </div>
       </form>
@@ -150,12 +151,7 @@
 
   <script src="script.js?v=20261119-layout2"></script>
   <script>
-    /*
-      Paste your Formspree endpoint below.
-      Get it from formspree.io/dashboard after creating a form.
-      It looks like: https://formspree.io/f/xyzabc12
-    */
-    const FORMSPREE_URL = 'https://formspree.io/f/xykdpwzy';
+    const CONTACT_URL = 'https://tibhesh.com/api/contact';
 
     const form    = document.getElementById('contactForm');
     const btn     = form.querySelector('.form-submit');
@@ -177,26 +173,27 @@
       btn.disabled = true;
 
       try {
-        const res = await fetch(FORMSPREE_URL, {
+        const res = await fetch(CONTACT_URL, {
           method: 'POST',
           headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
           body: JSON.stringify({
             name: name,
             email: email,
             message: message,
-            _subject: 'New message from portfolio'
+            project: document.getElementById('project').value.trim(),
+            website: document.getElementById('website').value
           })
         });
 
-        if (res.ok) {
+        const data = await res.json();
+        if (res.ok && data.success) {
           success.classList.add('show');
           form.reset();
           btn.textContent = 'Send Message';
           btn.disabled = false;
           setTimeout(() => success.classList.remove('show'), 7000);
         } else {
-          const data = await res.json();
-          throw new Error(data && data.errors ? data.errors[0].message : 'Something went wrong.');
+          throw new Error(data.error || 'Something went wrong.');
         }
       } catch (err) {
         alert('Could not send: ' + err.message);

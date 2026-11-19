@@ -73,3 +73,9 @@ To view the portfolio locally:
 
 ---
 *© 2024 Tibhesh Lamichhane. All rights reserved.*
+
+## Contact form
+
+The form posts to https://tibhesh.com/api/contact, served by the `tibheshportfolio-contact` Cloudflare Worker. It sends through the native EMAIL binding from contact@mail.tibhesh.com to tibheshlc@gmail.com, with the visitor as Reply-To. Formspree is not used.
+
+Worker source and API deployment metadata are in `cloudflare/`. The Worker is deployed separately from the static Pages build; website deployments do not update Worker code. Preserve the email and rate-limit bindings when redeploying. Run `node cloudflare/contact.test.mjs` for validation tests without sending email. The email-sending domain is mail.tibhesh.com.
