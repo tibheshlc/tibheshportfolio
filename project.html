@@ -161,17 +161,22 @@
           </div>`;
       }
 
-      /* Native video controls keep motion work playable with sound on demand. */
+      /* Motion plays in view with a single accessible sound control. */
       const motionHTML = p.motion?.length ? `
         <section class="project-motion" aria-labelledby="motion-heading">
           <h2 id="motion-heading" class="media-heading">Motion</h2>
           <div class="project-videos">
             ${p.motion.map(clip => `
               <figure class="motion-item reveal">
-                <video controls playsinline loop preload="metadata" poster="${clip.poster}" aria-label="${clip.title}">
+                <div class="motion-player">
+                <video muted playsinline loop preload="metadata" poster="${clip.poster}" aria-label="${clip.title}">
                   <source src="${clip.src}" type="video/mp4">
                   <a href="${clip.src}">Watch ${clip.title}</a>
                 </video>
+                <button class="motion-mute" type="button" aria-label="Unmute ${clip.title}" aria-pressed="false">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4Z"/><path class="sound-off" d="m16 9 6 6m0-6-6 6"/><path class="sound-on" d="M15 8a6 6 0 0 1 0 8m3-11a10 10 0 0 1 0 14"/></svg>
+                </button>
+                </div>
                 <figcaption>${clip.title}</figcaption>
               </figure>`).join('')}
           </div>
@@ -214,17 +219,37 @@
       }, { threshold: 0.06, rootMargin: '0px 0px -30px 0px' });
       newReveals.forEach(el => io.observe(el));
 
-      // Keep audio from different clips from playing over one another.
-      document.querySelectorAll('.motion-item video').forEach(video => {
-        video.addEventListener('play', () => {
-          document.querySelectorAll('.motion-item video').forEach(other => {
-            if (other !== video) other.pause();
-          });
+      const motionVideos = [...document.querySelectorAll('.motion-item video')];
+      const visibleVideos = new Set();
+      const syncPlayback = video => {
+        if (!document.hidden && visibleVideos.has(video)) {
+          const attempt = video.play();
+          if (attempt) attempt.catch(() => {});
+        } else video.pause();
+      };
+      const motionObserver = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting && entry.intersectionRatio >= 0.25) visibleVideos.add(entry.target);
+          else visibleVideos.delete(entry.target);
+          syncPlayback(entry.target);
         });
+      }, { threshold: [0, 0.25] });
+      motionVideos.forEach(video => {
+        video.muted = true;
+        const button = video.parentElement.querySelector('.motion-mute');
+        const updateSound = () => {
+          button.setAttribute('aria-label', `${video.muted ? 'Unmute' : 'Mute'} ${video.getAttribute('aria-label')}`);
+          button.setAttribute('aria-pressed', String(!video.muted));
+        };
+        button.addEventListener('click', () => {
+          video.muted = !video.muted;
+          syncPlayback(video);
+        });
+        video.addEventListener('volumechange', updateSound);
+        updateSound();
+        motionObserver.observe(video);
       });
-      document.addEventListener('visibilitychange', () => {
-        if (document.hidden) document.querySelectorAll('.motion-item video').forEach(video => video.pause());
-      });
+      document.addEventListener('visibilitychange', () => motionVideos.forEach(syncPlayback));
 
       /* ---- LIGHTBOX ---- */
       const lb       = document.getElementById('lb');

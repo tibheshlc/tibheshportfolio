@@ -730,3 +730,12 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   .footer { flex-direction: column; gap: 0.5rem; text-align: center; padding: 1.25rem; }
   .footer-links { justify-content: center; }
 }
+
+/* Minimal sound control for in-view motion playback. */
+.motion-player { position: relative; }
+.motion-mute { position: absolute; right: .75rem; bottom: .75rem; display: grid; place-items: center; width: 44px; height: 44px; padding: 10px; border: 1px solid rgba(255,255,255,.25); border-radius: 50%; background: rgba(0,0,0,.5); color: #fff; cursor: pointer; }
+.motion-mute:hover { background: rgba(0,0,0,.75); }
+.motion-mute:focus-visible { outline: 2px solid white; outline-offset: 3px; }
+.motion-mute svg { width: 22px; height: 22px; }
+.motion-mute .sound-on, .motion-mute[aria-pressed="true"] .sound-off { display: none; }
+.motion-mute[aria-pressed="true"] .sound-on { display: block; }
