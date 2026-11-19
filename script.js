@@ -57,19 +57,19 @@ const PROJECTS = [
       { src: 'media/pepsiz.mp4', poster: 'media/pepsiz-poster.jpg', title: 'Pepsi — Motion 02' }
     ],
     photos: [
-    { src: 'media/pepsi-holi.webp' },
     { src: 'images/pepsi-4.jpg' , wide: true },
     { src: 'images/pepsi-1.jpg' },
     { src: 'images/pepsi-2.jpg' },
     { src: 'images/pepsi-3.jpg' },
     { src: 'images/pepsi-6.jpg' , wide: true },
     { src: 'images/pepsi-5.jpg' , wide: true  },
+    { src: 'media/pepsi-holi.webp', wide: true },
     ]
   },
   {
     id: 'babari',
     title: 'Babari',
-    subtitle: 'Brand Photography',
+    subtitle: '',
     category: 'Commercial',
     filter: 'commercial',
     description: 'Commercial photography for Babari, featuring product-led portraits and campaign imagery.',
@@ -80,7 +80,12 @@ const PROJECTS = [
       { src: 'media/babari-campaign.webp' },
       { src: 'media/babari-02.webp' },
       { src: 'media/babari-03.webp' },
-      { src: 'media/babari-04.webp' }
+      { src: 'media/babari-04.webp' },
+      { src: 'media/commercial-babari-1-1600.webp' },
+      { src: 'media/commercial-babari-2-1600.webp' },
+      { src: 'media/commercial-babari-3-1600.webp' },
+      { src: 'media/commercial-babari-4-1600.webp', wide: true },
+      { src: 'media/commercial-babari-5-1600.webp', wide: true }
     ]
   },
   {
@@ -136,7 +141,7 @@ const PROJECTS = [
   },
   {
     id: 'surakshya',
-    title: 'Surakshya',
+    title: 'Rhino Leathers',
     subtitle: 'Personal Series',
     category: 'Editorial',
     filter: 'editorial',

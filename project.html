@@ -185,7 +185,7 @@
           <div class="project-header">
             <div class="project-title-block">
               <p class="project-eyebrow">${p.category}</p>
-              <h1 class="project-name">${p.title} <em>${p.subtitle}</em></h1>
+              <h1 class="project-name">${p.title}${p.subtitle ? ` <em>${p.subtitle}</em>` : ''}</h1>
             </div>
 
           </div>
@@ -197,7 +197,7 @@
 
           <div class="next-project reveal">
             <span>Next Project</span>
-            <a href="project.html?id=${next.id}">${next.title} — ${next.subtitle} →</a>
+            <a href="project.html?id=${next.id}">${next.title}${next.subtitle ? ` — ${next.subtitle}` : ''} →</a>
           </div>
         </div>
       `;
