@@ -745,3 +745,11 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .motion-mute { z-index: 5; display: flex; align-items: center; gap: 7px; width: auto; min-width: 44px; height: 44px; padding: 10px 14px; border-radius: 24px; background: rgba(0,0,0,.82); border-color: rgba(255,255,255,.65); box-shadow: 0 2px 12px rgba(0,0,0,.25); opacity: 1; visibility: visible; }
 .motion-sound-label { font-size: 12px; line-height: 1; color: #fff; }
 .motion-mute svg { flex-shrink: 0; }
+
+/* Subtle glass sound controls; dark translucent fallback without blur support. */
+.motion-mute { background: rgba(22,25,28,.62); border: 1px solid rgba(255,255,255,.28); box-shadow: inset 0 1px 0 rgba(255,255,255,.16), 0 3px 12px rgba(0,0,0,.12); transition: background .2s ease, border-color .2s ease; }
+@supports ((backdrop-filter: blur(12px)) or (-webkit-backdrop-filter: blur(12px))) {
+  .motion-mute { background: linear-gradient(145deg,rgba(255,255,255,.16),rgba(255,255,255,.04)), rgba(20,24,28,.24); -webkit-backdrop-filter: blur(12px) saturate(135%); backdrop-filter: blur(12px) saturate(135%); }
+}
+.motion-mute:hover { background: rgba(30,34,38,.42); border-color: rgba(255,255,255,.45); }
+.motion-mute svg, .motion-sound-label { filter: drop-shadow(0 1px 2px rgba(0,0,0,.45)); }
