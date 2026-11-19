@@ -753,3 +753,5 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 .motion-mute:hover { background: rgba(30,34,38,.42); border-color: rgba(255,255,255,.45); }
 .motion-mute svg, .motion-sound-label { filter: drop-shadow(0 1px 2px rgba(0,0,0,.45)); }
+
+.motion-mute { width: 44px; height: 44px; padding: 10px; justify-content: center; border-radius: 50%; }
