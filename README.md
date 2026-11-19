@@ -6,6 +6,9 @@ This project is designed with a premium, gallery-like aesthetic, emphasizing cle
 
 ## ✨ Features
 
+- **Motion projects**: 7Up and Pepsi include native, controllable video galleries.
+- **Babari**: a Commercial project with campaign artwork and product portraits.
+
 - **Project Filtering**: Interactive filter system on the homepage to browse projects by category.
 - **Dynamic Project Routing**: A dedicated project page template that loads content dynamically via URL parameters from a centralized data store.
 - **Integrated Lightbox**: Full-screen image viewing with keyboard navigation and gesture support on project pages.
@@ -21,6 +24,12 @@ This project is designed with a premium, gallery-like aesthetic, emphasizing cle
 - **CSS3**: Custom styling using CSS Variables, Flexbox, and CSS Grid for layout management.
 - **Vanilla JavaScript**: Lightweight logic for filtering, mobile navigation, and dynamic content loading.
 - **Google Fonts**: Integrated `EB Garamond` and `DM Sans`.
+
+## Publishing
+
+Run `node scripts/build.mjs` to create the public website in `dist/`. GitHub Pages deploys this folder when `master` is updated. The Cloudflare Pages project uses the same command, output folder, and production branch through its GitHub connection.
+
+New Drive media is stored locally in `media/`, so visitors do not need Google Drive access. Photos use optimized WebP copies; MP4 clips retain their original content and have lightweight poster images. The source Drive folder is unchanged.
 
 ## 📂 Project Structure
 

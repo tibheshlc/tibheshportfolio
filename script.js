@@ -19,6 +19,10 @@ const PROJECTS = [
     thumbImage: '',
     thumbBg: '#c8e6c8',
     heroBg: '#c8e6c8',
+    motion: [
+      { src: 'media/7upx.mp4', poster: 'media/7upx-poster.jpg', title: '7Up — Motion 01' },
+      { src: 'media/7upy.mp4', poster: 'media/7upy-poster.jpg', title: '7Up — Motion 02' }
+    ],
     photos: [
     { src: 'images/7up-10.png', wide: true },
     { src: 'images/7up-1.jpg' },
@@ -48,13 +52,35 @@ const PROJECTS = [
     thumbImage: 'images/pepsi-thumb.jpg',
     thumbBg: '#c8cce8',
     heroBg: '#c8cce8',
+    motion: [
+      { src: 'media/pepsix.mp4', poster: 'media/pepsix-poster.jpg', title: 'Pepsi — Motion 01' },
+      { src: 'media/pepsiz.mp4', poster: 'media/pepsiz-poster.jpg', title: 'Pepsi — Motion 02' }
+    ],
     photos: [
+    { src: 'media/pepsi-holi.webp' },
     { src: 'images/pepsi-4.jpg' , wide: true },
     { src: 'images/pepsi-1.jpg' },
     { src: 'images/pepsi-2.jpg' },
     { src: 'images/pepsi-3.jpg' },
     { src: 'images/pepsi-6.jpg' , wide: true },
     { src: 'images/pepsi-5.jpg' , wide: true  },
+    ]
+  },
+  {
+    id: 'babari',
+    title: 'Babari',
+    subtitle: 'Brand Photography',
+    category: 'Commercial',
+    filter: 'commercial',
+    description: 'Commercial photography for Babari, featuring product-led portraits and campaign imagery.',
+    heroImage: 'media/babari-02.webp',
+    thumbImage: 'media/babari-campaign.webp',
+    heroBg: '#dce5da',
+    photos: [
+      { src: 'media/babari-campaign.webp' },
+      { src: 'media/babari-02.webp' },
+      { src: 'media/babari-03.webp' },
+      { src: 'media/babari-04.webp' }
     ]
   },
   {

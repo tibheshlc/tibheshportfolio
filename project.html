@@ -161,6 +161,22 @@
           </div>`;
       }
 
+      /* Native video controls keep motion work playable with sound on demand. */
+      const motionHTML = p.motion?.length ? `
+        <section class="project-motion" aria-labelledby="motion-heading">
+          <h2 id="motion-heading" class="media-heading">Motion</h2>
+          <div class="project-videos">
+            ${p.motion.map(clip => `
+              <figure class="motion-item reveal">
+                <video controls playsinline loop preload="metadata" poster="${clip.poster}" aria-label="${clip.title}">
+                  <source src="${clip.src}" type="video/mp4">
+                  <a href="${clip.src}">Watch ${clip.title}</a>
+                </video>
+                <figcaption>${clip.title}</figcaption>
+              </figure>`).join('')}
+          </div>
+        </section>` : '';
+
       /* ---- RENDER ---- */
       document.getElementById('projectPage').innerHTML = `
         <div class="project-body">
@@ -177,6 +193,7 @@
           <p class="project-description">${p.description}</p>
 
           ${photosHTML}
+          ${motionHTML}
 
           <div class="next-project reveal">
             <span>Next Project</span>
@@ -196,6 +213,18 @@
         });
       }, { threshold: 0.06, rootMargin: '0px 0px -30px 0px' });
       newReveals.forEach(el => io.observe(el));
+
+      // Keep audio from different clips from playing over one another.
+      document.querySelectorAll('.motion-item video').forEach(video => {
+        video.addEventListener('play', () => {
+          document.querySelectorAll('.motion-item video').forEach(other => {
+            if (other !== video) other.pause();
+          });
+        });
+      });
+      document.addEventListener('visibilitychange', () => {
+        if (document.hidden) document.querySelectorAll('.motion-item video').forEach(video => video.pause());
+      });
 
       /* ---- LIGHTBOX ---- */
       const lb       = document.getElementById('lb');

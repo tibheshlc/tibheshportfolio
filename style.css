@@ -441,6 +441,18 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 /* Placeholder keeps readable height */
 .project-photos .ph { min-height: 300px; line-height: normal; }
 
+.project-motion { max-width: 1100px; margin: 3.5rem auto 0; padding: 0 8rem; }
+.media-heading { font-family: var(--serif); font-weight: 400; font-size: 1.8rem; margin: 0 0 1.5rem; }
+.project-videos { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; align-items: start; }
+.motion-item { margin: 0; min-width: 0; }
+.motion-item video { display: block; width: 100%; height: auto; max-height: 75vh; background: #111; }
+.motion-item figcaption { padding: .75rem 0; font-size: .75rem; color: var(--muted); line-height: 1.5; }
+@media (max-width: 768px) {
+  .project-motion { padding: 0 1.5rem; }
+  .project-videos { grid-template-columns: 1fr; gap: 1.5rem; }
+  .project-photos .photo-item.wide { grid-column: 1 / -1; }
+}
+
 /* project-back defined above */
 
 /* Next project strip */
