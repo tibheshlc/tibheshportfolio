@@ -316,3 +316,8 @@ function initReveal() {
   });
 }
 initReveal();
+
+// Keep the copyright year current on every page.
+document.querySelectorAll('[data-copyright-year]').forEach(element => {
+  element.textContent = String(new Date().getFullYear());
+});
